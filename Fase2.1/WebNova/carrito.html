@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Style.css">
+  <link rel="stylesheet" href="carrito.css">
+  <script src="./js/Componentes.js"></script>
+  <script src="./js/cartService.js"></script>
+  <script src="./js/cartCarrito.js"></script>
+  <title>Tus Productos </title>
+</head>
+<body>
+  <header> 
+    <nav>
+      <a href="./index.html"> <img src="./img/logo_trans.png" id="logo" alt="logo_trans"> </a>
+      <div>
+        <a href="./index.html">Inicio</a>
+        <a href="#">Categorias</a>
+        <a href="./carrito.html" id="cart"><img src="./img/carrito.png" alt="carrito"><span id="cuentaCarrito">0</span></a>
+      </div>
+    </nav>
+  </header>
+  <main>
+		<p id="carrito-vacio"> !Tu Carrio Esta Vacio¡ <a href="./index.html">elige algunos productos</a></p>
+    <section id="productos-container"></section>
+    <section id="totales">
+      <p>Total unidades: <span id="cantidad">0</span></p>
+      <p>Total precio: $<span id="precio">0</span></p>
+      <button disabled>Comprar</button>
+      <button id="reiniciar">Vaciar carrito</button>
+    </section>
+  </main>
+  <footer>
+    <p>Los mejores precios y componentes a un solo click</p>
+    <p>Creado por Cristhoper Leal</p>
+  </footer>
+  
+</body>
+</html>
+
+
