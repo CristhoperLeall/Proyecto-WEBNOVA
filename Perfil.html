@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="css/perfil.css">  
+  <script src="./js/Componentes.js"></script>
+  <script src="./js/cartService.js"></script>
+  <script src="./js/index.js" defer></script>
+  <title>Productos Destacados</title>
+</head>
+<body>
+    <!-- Header -->
+
+    <header>
+        <div class="container-hero">
+            <div class="container hero">
+                <div class="customer-support">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="content-customer-support">
+                        <span class="text">Comunicate con Nosotros</span>
+                        <span class="number">+56 9 9196 9934</span>
+                    </div>
+                </div>
+
+                <div class="container-logo">
+                    <i class="fa-brands fa-dropbox"></i>
+                    <h1 class="logo">Web Nova<a href="./index.html"></a></h1>
+                </div>
+
+                <div class="container-user">
+                    <div class="paste-button">
+                        <button class="button fa-solid fa-user"> </button>
+                        <div class="dropdown-content">
+                            <a id="bottom" href="Login.html">Inicia sesion</a>
+                            <a id="bottom" href="Registro.html">Registrate</a>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping" href="carrito.html" ></i>
+                    <div class="content-shopping-cart" href="carrito.html">
+                        <a class="text" href="carrito.html" id="carrito" >Carrito de Compras</a>
+                        <span class="number" id="cuentaCarrito">(0)</span>              
+                    </div>
+                </div>
+            </div>
+        </div>
+
+  
+      <!-- navbar -->
+    <div class="container-navbar">
+        <nav class="navbar container">
+            <i class="fa-solid fa-bars"></i>
+            
+            <ul class="menu">
+                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Inicio</a></li>
+            </ul>
+            <form class="search-form">
+                <input type="search" placeholder="Buscar...">
+                <button class="btn-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </nav>
+    </div>
+    </header>
+
+    <!-- Objetos de pagina -->
+    
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4">Related products</h2>
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Fancy Product</h5>
+                                <!-- Product price-->
+                                $40.00 - $80.00
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Sale badge-->
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                        <!-- Product image-->
+                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Special Item</h5>
+                                <!-- Product reviews-->
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div>
+                                <!-- Product price-->
+                                <span class="text-muted text-decoration-line-through">$20.00</span>
+                                $18.00
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Sale badge-->
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                        <!-- Product image-->
+                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Sale Item</h5>
+                                <!-- Product price-->
+                                <span class="text-muted text-decoration-line-through">$50.00</span>
+                                $25.00
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Popular Item</h5>
+                                <!-- Product reviews-->
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div>
+                                <!-- Product price-->
+                                $40.00
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de pagina -->
+
+    <footer class="footer">
+      <div class="container-footer">
+          <div class="menu-footer">
+              <div class="contact-info">
+                  <p class="title-footer">Información de Contacto</p>
+                  <ul>
+                      <li>Dirección: Calle 6, 11350. La florida</li>
+                      <li>Telefono: +56 9 9196 9934</li>
+                      <li>Email: cr.pradop@duocuc.cl</li>
+                  </ul>
+                  <div class="social-icons">
+                      <span class="facebook">
+                          <i class="fa-brands fa-facebook"></i>
+                      </span>
+                      <span class="instagram">
+                          <i class="fa-brands fa-instagram"></i>
+                      </span>
+                      <span class="google">
+                          <i class="fa-brands fa-google"></i>
+                      </span>
+                      <span class="twitter ">
+                          <i class="fa-brands fa-twitter"></i>></i>
+                      </span>
+                      <span class="linkedin">
+                          <i class="fa-brands fa-linkedin"></i>
+                      </span>
+                  </div>
+              </div>
+              <div class="information">
+                  <p class="title-footer">Información</p>
+                  <ul>
+                      <li><a href="#">Nosotros</a></li>
+                      <li><a href="#">Terminos y condiciones</a></li>
+                      <li><a href="#">Contactanos</a></li>
+                  </ul>
+              </div>
+              <div class="my-account">
+                  <p class="title-footer">Mi cuenta</p>
+                  <ul>
+                      <li><a href="#">Perfil</a></li>
+                      <li><a href="#">Historial de compras</a></li>
+                      <li><a href="#">Historial presupuestos</a></li>
+                  </ul>
+              </div>
+              <div class="newslatter">
+                  <p class="title-footer">Mi cuenta</p>
+                  <div class="content">
+                      <p>
+                          Suscribete para recibir las Ofertas
+                      </p>
+                      <input type="email" placeholder="Ingresa tu correo">
+                      <button>Suscribete</button>
+                  </div>
+              </div>
+          </div>
+          <div class="copyright">
+              <p>
+                  Desarrollado por: OWOWOWOWOOWOW &copy; 2024
+              </p>
+              <img class="pay-img" src="img/pay.png" alt="pago">
+          </div>
+      </div>
+    </footer>
+    <script 
+        src="https://kit.fontawesome.com/aea391ca7c.js" 
+        crossorigin="anonymous">
+    </script>
+</body>
+</html>

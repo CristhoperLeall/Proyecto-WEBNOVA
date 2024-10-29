@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/Style.css">
+  <link rel="stylesheet" href="css/producto.css">
+  <link rel="stylesheet" href="css/carrito.css">
+  <script src="./js/Componentes.js"></script>
+  <script src="./js/cartService.js"></script>
+  <script src="./js/cartCarrito.js"></script>
+  <title>Tus Productos </title>
+</head>
+
+<body>
+  <!-- Header -->
+
+  <header>
+    <div class="container-hero">
+      <div class="container hero">
+        <div class="customer-support">
+          <i class="fa-solid fa-headset"></i>
+          <div class="content-customer-support">
+            <span class="text">Comunicate con Nosotros</span>
+            <span class="number">+56 9 9196 9934</span>
+          </div>
+        </div>
+
+        <div class="container-logo">
+          <i class="fa-brands fa-dropbox"></i>
+          <h1 class="logo">Web Nova<a href="./index.html"></a></h1>
+        </div>
+
+        <div class="container-user">
+          <div class="paste-button">
+            <button class="button fa-solid fa-user"> </button>
+            <div class="dropdown-content">
+              <a id="bottom" href="Login.html">Inicia sesion</a>
+              <a id="bottom" href="Registro.html">Registrate</a>
+            </div>
+          </div>
+          <i class="fa-solid fa-cart-shopping" href="carrito.html"></i>
+          <div class="content-shopping-cart" href="carrito.html">
+            <a class="text" href="carrito.html" id="carrito">Carrito de Compras</a>
+            <span class="number" id="cuentaCarrito">(0)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- navbar -->
+
+    <div class="container-navbar">
+      <nav class="navbar container">
+        <i class="fa-solid fa-bars"></i>
+
+        <ul class="menu">
+          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Inicio</a></li>
+        </ul>
+        <form class="search-form">
+          <input type="search" placeholder="Buscar...">
+          <button class="btn-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </form>
+      </nav>
+    </div>
+  </header>
+  <!-- Producto -->
+
+  <main>
+    <div class="main-object">
+      <section class="carrito-section">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-8 cart">
+              <div class="title">
+                <div class="row">
+                  <div class="col">
+                    <h4><b>Shopping Cart</b></h4>
+                  </div>
+                  <div class="col align-self-center text-right text-muted">3 items</div>
+                </div>
+              </div>
+              <p id="carrito-vacio"> !Tu Carrio Esta Vacio¡ <a href="./index.html">elige algunos productos</a></p>
+              <div class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                  <div class="col-2"><img class="img-fluid" src="https://i.imgur.com/1GrakTl.jpg"></div>
+                  <div class="col">
+                    <div class="row text-muted">Shirt</div>
+                    <div class="row">Cotton T-shirt</div>
+                  </div>
+                  <div class="col">
+                    <a href="#">-</a><a href="#" class="border" id="cantidad">0</a><a href="#">+</a>
+                  </div>
+                  <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row main align-items-center">
+                  <div class="col-2"><img class="img-fluid" src="img/4.png"></div>
+                  <div class="col">
+                    <div class="row text-muted">Shirt</div>
+                    <div class="row">Cotton T-shirt</div>
+                  </div>
+                  <div class="col">
+                    <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                  </div>
+                  <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                </div>
+              </div>
+              <div class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                  <div class="col-2"><img class="img-fluid" src="img/1.png"></div>
+                  <div class="col">
+                    <div class="row text-muted">Shirt</div>
+                    <div class="row">Cotton T-shirt</div>
+                  </div>
+                  <div class="col">
+                    <a href="#">-</a><a href="#" class="border">1</a><a href="#">+</a>
+                  </div>
+                  <div class="col">&euro; 44.00 <span class="close">&#10005;</span></div>
+                </div>
+              </div>
+              <div class="back-to-shop"><a href="#">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+            </div>
+            <div class="col-md-4 summary">
+              <div>
+                <h5><b>Resumen de compras</b></h5>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col" style="padding-left:0;"><p>Total unidades: <span id="cantidad">0</span></p></div>
+                <div class="col text-right"><span id="precio">0</span></div>
+              </div>
+              <form>
+                <p>Envio</p>
+                <select>
+                  <option class="text-muted">Envio nomal</option>
+                  <option class="text-muted">Rapido</option>
+                </select>
+              </form>
+              <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col">Precio Total</div>
+                <div class="col text-right"><span id="precio">0</span></div>
+              </div>
+              <button class="btn">CHECKOUT</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Pie de pagina -->
+  <footer class="footer">
+    <div class="container-footer">
+      <div class="menu-footer">
+        <div class="contact-info">
+          <p class="title-footer">Información de Contacto</p>
+          <ul>
+            <li>Dirección: Calle 6, 11350. La florida</li>
+            <li>Telefono: +56 9 9196 9934</li>
+            <li>Email: cr.pradop@duocuc.cl</li>
+          </ul>
+          <div class="social-icons">
+            <span class="facebook">
+              <i class="fa-brands fa-facebook"></i>
+            </span>
+            <span class="instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </span>
+            <span class="google">
+              <i class="fa-brands fa-google"></i>
+            </span>
+            <span class="twitter ">
+              <i class="fa-brands fa-twitter"></i>></i>
+            </span>
+            <span class="linkedin">
+              <i class="fa-brands fa-linkedin"></i>
+            </span>
+          </div>
+        </div>
+        <div class="information">
+          <p class="title-footer">Información</p>
+          <ul>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Terminos y condiciones</a></li>
+            <li><a href="#">Contactanos</a></li>
+          </ul>
+        </div>
+        <div class="my-account">
+          <p class="title-footer">Mi cuenta</p>
+          <ul>
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#">Historial de compras</a></li>
+            <li><a href="#">Historial presupuestos</a></li>
+          </ul>
+        </div>
+        <div class="newslatter">
+          <p class="title-footer">Mi cuenta</p>
+          <div class="content">
+            <p>
+              Suscribete para recibir las Ofertas
+            </p>
+            <input type="email" placeholder="Ingresa tu correo">
+            <button>Suscribete</button>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>
+          Desarrollado por: OWOWOWOWOOWOW &copy; 2024
+        </p>
+        <img class="pay-img" id="pay-img" src="img/pay.png" alt="pago">
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scrips externos -->
+  <script src="https://kit.fontawesome.com/aea391ca7c.js" crossorigin="anonymous">
+  </script>
+
+</body>
+
+</html>
