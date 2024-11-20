@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/productos.css' %}">
+    <script src="{% static './js/Componentes.js' %}"></script>
+    <script src="{% static './js/cartService.js' %}"></script>
+    <script src="{% static './js/index.js' %]" defer></script>
+    
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+        <div class="container-hero">
+            <div class="container hero">
+                <div class="customer-support">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="content-customer-support">
+                        <span class="text">Comunicate con Nosotros</span>
+                        <span class="number">+56 9 9196 9934</span>
+                    </div>
+                </div>
+
+                <div class="container-logo">
+                    <i class="fa-brands fa-dropbox"></i>
+                    <h1 class="logo">Web Nova<a href="{% url 'INDEX' %}"></a></h1>
+                </div>
+
+                <div class="container-user">
+                    <div class="paste-button">
+                        <button class="button fa-solid fa-user"> </button>
+                        <div class="dropdown-content">
+                            {% if user.is_authenticated %}
+                            <a id="bottom" href="{% url 'user_profile' %}">Ver Perfil : {{user.username}}  </a>
+                            <a id="bottom" href="">Compras </a>
+                            <a id="bottom" href="{% url 'LOGOUT' %}">Cerrar sesion</a>
+                            {% else %}
+                            <a id="bottom" href="{% url 'log' %}">Inicia sesion</a>
+                            <a id="bottom" href="{% url 'registrop' %}">Registrate</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping" href="{% url 'card' %}"></i>
+                    <div class="content-shopping-cart" href="{% url 'card' %}">
+                        <a class="text" href="{% url 'card' %}" id="carrito" style="color: white; text-decoration: none;">Carrito de Compras</a>
+                        <span class="number" id="cuentaCarrito">(0)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- navbar -->
+
+        <div class="container-navbar">
+            <nav class="navbar container">
+                <i class="fa-solid fa-bars"></i>
+
+                <ul class="menu">
+                    <li><a href="{% url 'INDEX' %}">Inicio</a></li>
+                    <li><a href="{% url 'productoex' %}">Productos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                </ul>
+                <form method="get" class="search-form">
+                    <input type="search" name="query" id="search-input" placeholder="Buscar..." autocomplete="off">
+                    <button type="submit" class="btn-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+                <div id="suggestions-box" style="display: none;"></div>
+                <script>
+                    document.getElementById('search-input').addEventListener('input', function() {
+                        let query = this.value;
+                        if (query.length >= 2) {  // Mostrar sugerencias después de 2 caracteres
+                            fetch(`/buscar_sugerencias/?query=${query}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    let suggestionsBox = document.getElementById('suggestions-box');
+                                    suggestionsBox.innerHTML = '';  // Limpiar sugerencias anteriores
+                                    if (data.length > 0) {
+                                        data.forEach(item => {
+                                            let div = document.createElement('div');
+                                            div.textContent = item.nombre;
+                                            div.onclick = function() {
+                                                document.getElementById('search-input').value = item.nombre;
+                                                suggestionsBox.style.display = 'none';
+                                            };
+                                            suggestionsBox.appendChild(div);
+                                        });
+                                        suggestionsBox.style.display = 'block';
+                                    } else {
+                                        suggestionsBox.style.display = 'none';
+                                    }
+                                });
+                        } else {
+                            document.getElementById('suggestions-box').style.display = 'none';
+                        }
+                    });
+                    </script>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Objetos de pagina -->
+    {% csrf_token %}
+    <section class="banner">
+        <div class="content-banner">
+            <p>Eri terrible de weon conchetumare</p>
+            <h2>100% weon <BR>Y lo digo ctm</h2>
+            <a href="">Miau Miau Miau</a>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="container top-categories">
+            <h1 class="heading-1">Categorias</h1>
+            <div class="container-categories">
+                <div class="card-category category-monitores" >
+                    <p>Monitores</p>
+                    <span>Mas detalles</span>
+                </div>
+                <div class="card-category category-tarjetas">
+                    <p>Tarjetas graficas</p>
+                    <span>Mas detalles</span>
+                </div>
+                <div class="card-category category-madres">
+                    <p>Placas madres</p>
+                    <span>Mas detalles</span>
+                </div>
+                <div class="card-category category-ram">
+                    <p>Modulos de ram</p>
+                    <span>Mas detalles</span>
+                </div>
+            </div>
+        </section>
+        <section class="container top-products">
+            <h1 class="heading-1">Productos destacados</h1>
+            <div class="container-options">
+                <span class="active">Mas popules</span>
+                <span>Destacados</span>
+                <span>Ofertas</span>
+            </div>
+            <div class="container-products">
+                <div class="card-product">
+                    <div class="slider-container">
+                        <button class="slider-btn prev-btn">&#10094;</button>
+                        <div class="slider">
+                          {% for prod in productos_aleatorios %}
+                          <div class="card_product">
+                            <a href="{% url 'producto_detalle' prod.id %}" class="product-link" style="text-decoration: none;">
+                            <div class="img_producto_slider">
+                              <img src="{{ prod.imagen.url }}" alt="{{ prod.nombre_producto }}">
+                            </div>
+                            <div class="content">
+                              <h3>{{ prod.nombre_producto }}</h3>
+                              <div class="price">${{ prod.precio_producto }}</div>
+                              <ul class="product-details">
+                                <li>Marca: {{ prod.marca_producto }}</li>
+                                <li>Tipo: {{ prod.categoria }}</li>
+                              </ul>
+                            </div>
+                            </a>
+                          </div>
+                          {% endfor %}
+                        </div>
+                        <button class="slider-btn next-btn">&#10095;</button>
+                      </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de pagina -->
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="menu-footer">
+                <div class="contact-info">
+                    <p class="title-footer">Información de Contacto</p>
+                    <ul>
+                        <li>Dirección: Calle 6, 11350. La florida</li>
+                        <li>Telefono: +56 9 9196 9934</li>
+                        <li>Email: cr.pradop@duocuc.cl</li>
+                    </ul>
+                    <div class="social-icons">
+                        <span class="facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </span>
+                        <span class="instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </span>
+                        <span class="google">
+                            <i class="fa-brands fa-google"></i>
+                        </span>
+                        <span class="twitter ">
+                            <i class="fa-brands fa-twitter"></i>></i>
+                        </span>
+                        <span class="linkedin">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="information">
+                    <p class="title-footer">Información</p>
+                    <ul>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Terminos y condiciones</a></li>
+                        <li><a href="#">Contactanos</a></li>
+                    </ul>
+                </div>
+                <div class="my-account">
+                    <p class="title-footer">Mi cuenta</p>
+                    <ul>
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Historial de compras</a></li>
+                        <li><a href="#">Historial presupuestos</a></li>
+                    </ul>
+                </div>
+                <div class="newslatter">
+                    <p class="title-footer">Mi cuenta</p>
+                    <div class="content">
+                        <p>
+                            Suscribete para recibir las Ofertas
+                        </p>
+                        <input type="email" placeholder="Ingresa tu correo">
+                        <button>Suscribete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>
+                    Desarrollado por: OWOWOWOWOOWOW &copy; 2024
+                </p>
+                <img class="pay-img" src="{% static 'img/pay.png' %}" alt="pago">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scrips externos -->
+    <script src="https://kit.fontawesome.com/aea391ca7c.js" crossorigin="anonymous">
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+          const slider = document.querySelector('.slider');
+          const prevBtn = document.querySelector('.prev-btn');
+          const nextBtn = document.querySelector('.next-btn');
+    
+          let currentIndex = 0;
+    
+          const updateSliderPosition = () => {
+            const cardWidth = document.querySelector('.card_product').offsetWidth;
+            const gap = parseInt(getComputedStyle(slider).gap) || 0;
+            slider.style.transform = `translateX(-${(cardWidth + gap) * currentIndex}px)`;
+          };
+    
+          prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+              currentIndex--;
+              updateSliderPosition();
+            }
+          });
+    
+          nextBtn.addEventListener('click', () => {
+            const maxIndex = slider.children.length - 1;
+            if (currentIndex < maxIndex) {
+              currentIndex++;
+              updateSliderPosition();
+            }
+          });
+        });
+      </script>
+</body>
+
+</html>

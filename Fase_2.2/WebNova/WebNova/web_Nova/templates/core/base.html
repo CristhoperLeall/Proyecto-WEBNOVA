@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/Style.css'%}">
+  <link rel="stylesheet" href="{% static 'css/producto.css'%} ">
+  <script src="./js/Componentes.js"></script>
+  <script src="./js/cartService.js"></script>
+  <script src="./js/index.js" defer></script>
+  <title>Productos Destacados</title>
+</head>
+<body>
+
+    <!-- Header -->
+
+    <header>
+        <div class="container-hero">
+            <div class="container hero">
+                <div class="customer-support">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="content-customer-support">
+                        <span class="text">Comunicate con Nosotros</span>
+                        <span class="number">+56 9 9196 9934</span>
+                    </div>
+                </div>
+
+                <div class="container-logo">
+                    <i class="fa-brands fa-dropbox"></i>
+                    <h1 class="logo">Web Nova<a href="{% url 'INDEX' %}"></a></h1>
+                </div>
+
+                <div class="container-user">
+                    <div class="paste-button">
+                        <button class="button fa-solid fa-user"> </button>
+                        <div class="dropdown-content">
+                            <a id="bottom" href="{% url 'log' %}">Inicia sesion</a>
+                            <a id="bottom" href="{% url 'registrop' %}">Registrate</a>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping" href="{% url 'card' %}"></i>
+                    <div class="content-shopping-cart" href="{% url 'card' %}">
+                        <a class="text" href="{% url 'card' %}" id="carrito" style="color: white; text-decoration: none;">Carrito de Compras</a>
+                        <span class="number" id="cuentaCarrito">(0)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- navbar -->
+
+        <div class="container-navbar">
+            <nav class="navbar container">
+                <i class="fa-solid fa-bars"></i>
+
+                <ul class="menu">
+                    <li><a href="{% url 'INDEX' %}">Inicio</a></li>
+                    <li><a href="{% url 'productoex' %}">Productos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                </ul>
+                <form class="search-form">
+                    <input type="search" placeholder="Buscar...">
+                    <button class="btn-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Objetos de pagina -->
+    
+    <section class="banner">
+        <div class="content-banner">
+            <p>Eri terrible de weon conchetumare</p>
+            <h2>100% weon <BR>Y lo digo ctm</h2>
+            <a href="">Miau Miau Miau</a>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <section class="container top-categories">
+            <h1 class="heading-1">Categorias</h1>
+            <div class="container-categories">
+                <div class="card-category category-monitores" >
+                    <p>Monitores</p>
+                    <span>Mas detalles</span>
+                </div>
+                <div class="card-category category-tarjetas" >
+                    <p>Tarjetas graficas</p>
+                    <span>Mas detalles</span>
+                </div>
+                <div class="card-category category-madres" >
+                    <p>Placas madres</p>
+                    <span>Mas detalles</span>
+                </div>
+                <div class="card-category category-ram" >
+                    <p>Modulos de ram</p>
+                    <span>Mas detalles</span>
+                </div>
+            </div>
+        </section>
+        <section class="container top-products">
+            <h1 class="heading-1">Productos destacados</h1>
+                <div class="container-options">
+                    <span class="active">Mas popules</span>
+                    <span>Destacados</span>
+                    <span>Ofertas</span>
+                </div>
+            <div class="container-products">
+                <div class="card-product">
+                    <div class="containet-img">
+                        <img src="img/1.png" alt="TRX4060">
+                        <div class="button-group"></div>
+                        <span>
+                            <i class="fa-solid fa-dollar-sign" style="color: #000000;"></i>
+                        </span>
+                        <span>
+                            <i class="fa-solid fa-dollar-sign" style="color: #000000;"></i>
+                        </span>
+                        <span>
+                            <i class="fa-solid fa-dollar-sign" style="color: #000000;"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="content-card-product"> 
+                    <div class="start">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                    <h3>RTX3060</h3>
+                    <span class="add-card">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </span>
+                    <p class="price">CLP.340.000</p>
+                </div>
+                
+            </div>
+        </section>           
+    </main>
+
+    <!-- Pie de pagina -->
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="menu-footer">
+                <div class="contact-info">
+                    <p class="title-footer">Información de Contacto</p>
+                    <ul>
+                        <li>Dirección: Calle 6, 11350. La florida</li>
+                        <li>Telefono: +56 9 9196 9934</li>
+                        <li>Email: cr.pradop@duocuc.cl</li>
+                    </ul>
+                    <div class="social-icons">
+                        <span class="facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </span>
+                        <span class="instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </span>
+                        <span class="google">
+                            <i class="fa-brands fa-google"></i>
+                        </span>
+                        <span class="twitter ">
+                            <i class="fa-brands fa-twitter"></i>></i>
+                        </span>
+                        <span class="linkedin">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="information">
+                    <p class="title-footer">Información</p>
+                    <ul>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Terminos y condiciones</a></li>
+                        <li><a href="#">Contactanos</a></li>
+                    </ul>
+                </div>
+                <div class="my-account">
+                    <p class="title-footer">Mi cuenta</p>
+                    <ul>
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Historial de compras</a></li>
+                        <li><a href="#">Historial presupuestos</a></li>
+                    </ul>
+                </div>
+                <div class="newslatter">
+                    <p class="title-footer">Mi cuenta</p>
+                    <div class="content">
+                        <p>
+                            Suscribete para recibir las Ofertas
+                        </p>
+                        <input type="email" placeholder="Ingresa tu correo">
+                        <button>Suscribete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>
+                    Desarrollado por: OWOWOWOWOOWOW &copy; 2024
+                </p>
+                <img class="pay-img" src="img/pay.png" alt="pago">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scrips externos -->
+    <script 
+        src="https://kit.fontawesome.com/aea391ca7c.js" 
+        crossorigin="anonymous">
+    </script>
+</body>
+</html>

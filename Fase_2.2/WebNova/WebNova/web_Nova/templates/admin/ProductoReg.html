@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/formularioProp.css'%}">
+    <script src="{% static './js/Componentes.js' %}"></script>
+    <script src="{% static './js/cartService.js' %}"></script>
+    <script src="{% static './js/index.js' %}" defer></script>
+    <script src="{% static './js/productosreg.js' %}"></script>
+    <title>Productos Destacados</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+        <div class="container-hero">
+            <div class="container hero">
+                <div class="customer-support">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="content-customer-support">
+                        <span class="text">Comunicate con Nosotros</span>
+                        <span class="number">+56 9 9196 9934</span>
+                    </div>
+                </div>
+
+                <div class="container-logo">
+                    <i class="fa-brands fa-dropbox"></i>
+                    <h1 class="logo">Web Nova<a href="{% url 'INDEX' %}"></a></h1>
+                </div>
+
+                <div class="container-user">
+                    <div class="paste-button">
+                        <button class="button fa-solid fa-user"> </button>
+                        <div class="dropdown-content">
+                            {% if user.is_authenticated %}
+                            <a id="bottom" href="{% url 'user_profile' %}">Ver Perfil : {{user.username}} </a>
+                            <a id="bottom" href="">Compras </a>
+                            <a id="bottom" href="{% url 'LOGOUT' %}">Cerrar sesion</a>
+                            {% else %}
+                            <a id="bottom" href="{% url 'log' %}">Inicia sesion</a>
+                            <a id="bottom" href="{% url 'registrop' %}">Registrate</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-cart-shopping" href="{% url 'card' %}"></i>
+                    <div class="content-shopping-cart" href="{% url 'card' %}">
+                        <a class="text" href="{% url 'card' %}" id="carrito"
+                            style="color: white; text-decoration: none;">Carrito de Compras</a>
+                        <span class="number" id="cuentaCarrito">(0)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- navbar -->
+
+        <div class="container-navbar">
+            <nav class="navbar container">
+                <i class="fa-solid fa-bars"></i>
+
+                <ul class="menu">
+                    <li><a href="{% url 'INDEX' %}">Inicio</a></li>
+                    <li><a href="{% url 'productoex' %}">Productos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                </ul>
+                <form class="search-form">
+                    <input type="search" placeholder="Buscar...">
+                    <button class="btn-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Objetos de pagina -->
+
+    <main class="main-objet">
+        <section class="login-section">
+            <form class="form-registro" action="" method="POST" class="">
+                {% csrf_token %}
+                <div class="forms-title">
+                    <h1 class="title" style=" color: #fff;"> Registro de Productos </h1>
+                </div>
+                <div class="formulario-input">
+                    <input class="" type="text" id="nombre_producto" name="nombre_producto" placeholder="Nombre del producto">
+                    <input class="" type="text" id="precio_producto" name="precio_producto" placeholder="Precio">
+                    <select id="tipoComponente" name="categoria" onchange="mostrarFormulario()">
+                        <option value="">Seleccione un tipo</option>
+                        <option value="procesador">Procesador</option>
+                        <option value="tarjeta_grafica">Tarjeta Gráfica</option>
+                        <option value="memoria_ram">Memoria RAM</option>
+                        <option value="almacenamiento">Almacenamiento</option>
+                        <option value="placamadre">Placa Madre</option>
+                        <option value="fuentepoder">Fuente de poder</option>
+                        <option value="pantalla">Pantalla</option>
+                    </select>
+                    <div class="select-forms">
+                        <!-- Formulario de Procesador -->
+                        <div id="formProcesador" class="componente-form">
+                            <h2>Detalles del Procesador</h2>
+                            <label for="marca_producto">Marca:</label>
+                            <input type="text" id="marca_producto" name="marca_producto"><br>
+
+                            <label for="nucleos">Número de Núcleos:</label>
+                            <input type="number" id="nucleos" name="nucleos"><br>
+
+                            <label for="velocidad">Velocidad (GHz):</label>
+                            <input type="text" id="velocidad" name="velocidad"><br>
+
+                            <input class="" type="text" name="descripcíon" id="descripcíon" placeholder="Descripcíon">
+                            <input class="" type="file" name="img" id="img" placeholder="">
+                        </div>
+
+                        <!-- Formulario de Tarjeta Gráfica -->
+                        <div id="formTarjetaGrafica" class="componente-form">
+                            <h2>Detalles de la Tarjeta Gráfica</h2>
+                            <label for="marca_producto">Marca:</label>
+                            <input type="text" id="marca_producto" name="marca_producto"><br>
+
+                            <label for="memoria_grafica">Memoria (GB):</label>
+                            <select type="number" id="memoria_grafica" name="memoria_grafica">
+                                <option value="Null">Sin especificar</option>
+                                <option value="4GB">4GB</option>
+                                <option value="6GB">6GB</option>
+                                <option value="8GB">8GB</option>
+                                <option value="12GB">12GB</option>
+                                <option value="14GB">14GB</option>
+                                <option value="16GB">16GB</option>
+                                <option value="20GB">20GB</option>
+                                <option value="24GB">24GB</option>
+                            </select>
+
+                            <input class="" type="text" name="descripcíon" id="descripcíon" placeholder="Descripcíon">
+                            <input class="" type="file" name="img" id="img" placeholder="">
+                        </div>
+
+                        <!-- Formulario de Memoria RAM -->
+                        <div id="formMemoriaRAM" class="componente-form">
+                            <h2>Detalles de la Memoria RAM</h2>
+                            <label for="marca_producto">Marca:</label>
+                            <input type="text" id="marca_producto" name="marca_producto"><br>
+
+                            <label for="capacidad_ram">Capacidad (GB):</label>
+                            <input type="number" id="capacidad_ram" name="capacidad_ram"><br>
+
+                            <label for="tipoRAM">Tipo (DDR4, DDR5, etc.):</label>
+                            <select type="text" id="tipoRam" name="tipoRam">
+                                <option value="Null">Sin especificar</option>
+                                <option value="DRR4">DRR4</option>
+                                <option value="DRR5">DRR5</option>
+                            </select>
+
+                            <label for="velocidadRAM" style="margin-top: 15px;">Velocidad RAM:</label>
+                            <input type="text" id="velocidadRAM" name="velocidadRam"><br>
+
+                            <input class="" type="text" name="descripcíon" id="descripcíon" placeholder="Descripcíon">
+                            <input class="" type="file" name="img" id="img" placeholder="">
+                        </div>
+
+                        <!-- Formulario de Almacenamiento -->
+                        <div id="formAlmacenamiento" class="componente-form">
+                            <h2>Detalles del Almacenamiento</h2>
+                            <label for="marca_producto">Marca:</label>
+                            <input type="text" id="marca_producto" name="marca_producto"><br>
+
+                            <label for="capacidad_almacenamiento">Capacidad (GB/TB):</label>
+                            <select name="capacidad_almacenamiento" id="capacidad_almacenamiento" tipe="text" required>
+                                <option value="Null">Sin especificar</option>
+                                <option value="16GB">16GB</option>
+                                <option value="128GB">128GB</option>
+                                <option value="256GB">256GB</option>
+                                <option value="500GB">500GB</option>
+                                <option value="1TB">1TB</option>
+                                <option value="2TB">2TB</option>
+                            </select>
+
+                            <label for="tipo_almacenamiento" style="margin-top: 15px;">Tipo (SSD, HDD):</label>
+                            <select name="tipo_almacenamiento" id="tipo_almacenamiento">
+                                <option value="Null">Sin especificar</option>
+                                <option value="SSD"> SSD</option>
+                                <option value="HDD"> HDD</option>
+                                <option value="M2NVMe"> M.2MVME</option>
+                            </select>
+
+                            <input class="" type="text" name="descripcíon" id="descripcíon" placeholder="Descripcíon">
+                            <input class="" type="file" name="img" id="img" placeholder="">
+                        </div>
+
+                        <!-- Formulario de Placa Madre -->
+                        <div id="formPlacamadre" class="componente-form">
+                            <h2>Detalles de la Placa Madre</h2>
+                            <label for="marca_producto">Marca:</label>
+                            <input type="text" id="marca_producto" name="marca_producto"><br>
+
+                            <label for="socket">Socket del Procesador:</label>
+                            <select name="socket" id="socket">
+                                <option value="Null">Sin especificar</option>
+                                <option value="AM4">AM4</option>
+                                <option value="AM5">AM5</option>
+                                <option value="Intel">Intel</option>
+                            </select>
+
+                            <label for="tipo_memoria">Tipo de Memoria (DDR4, DDR5):</label>
+                            <select type="text" id="tipo_memoria" name="tipo_memoria">
+                                <option value="Null">Sin especificar</option>
+                                <option value="DRR4">DRR4</option>
+                                <option value="DRR5">DRR5</option>
+                            </select>
+
+                            <label style="margin-top: 15px;" for="puertosExp">Número de Puertos de Expansión:</label>
+                            <input type="number" id="puertos_expacion" name="puertos_expacion"><br>
+
+                            <input class="" type="text" name="descripcíon" id="descripcíon" placeholder="Descripcíon">
+                            <input class="" type="file" name="img" id="img" placeholder="">
+                        </div>
+                        <!-- Formulario de Fuente de poder -->
+                        <div id="formFuentepoder" class="componente-form">
+                            <h2>Detalles de la Fuente de Poder</h2>
+                            <label for="marca_producto">Marca:</label>
+                            <input type="text" id="marca_producto" name="marca_producto"><br>
+
+                            <label for="potencia">Potencia (W):</label>
+                            <select id="potencia" name="potencia">
+                                <option value="Null">Sin especificar</option>
+                                <option value="500W">500 Watts</option>
+                                <option value="550W">550 Watts</option>
+                                <option value="600W">600 Watts</option>
+                                <option value="700W">700 Watts</option>
+                                <option value="800W">800 Watts</option>
+                                <option value="1000W">1000 Watts</option>
+
+                            </select>
+
+                            <label style="margin-top: 15px;" for="certificacion">Certificación (80 PLUS, etc.):</label>
+                            <select id="certificacion" name="certificacion">
+                                <option value="Null">Sin especificar</option>
+                                <option value="white">80 White</option>
+                                <option value="silver">80 Silver</option>
+                                <option value="gold">80 Gold</option>
+                                <option value="platinum">80 Platino</option>
+                                <option value="titanium">80 Titaneo</option>
+                            </select>
+
+                            <label style="margin-top: 15px;" for="modularidad">Modularidad (Modular, No Modular, Semi-Modular):</label>
+                            <select id="modularidad" name="modularidad">
+                                <option value="Null">Sin especificar</option>
+                                <option value="modular">MODULAR</option>
+                                <option value="no_modular">NO_MODULAR</option>
+                                <option value="semi_modular">SEMI_MODULAR</option>
+                            </select>
+
+                            <input class="" type="text" name="descripcíon" id="descripcíon" placeholder="Descripcíon">
+                            <input class="" type="file" name="img" id="img" placeholder="">
+                        </div>
+                        <!-- Formulario de Pantalla -->
+                        <div id="formPantalla" class="componente-form">
+                            <h2>Detalles de la Pantalla</h2>
+                            <label for="marca_producto">Marca:</label>
+                            <input id="marca_producto" name="marca_producto"><br>
+
+                            <label for="tamaño_pantalla">Tamaño (pulgadas):</label>
+                            <select id="tamaño_pantalla" name="tamaño_pantalla">
+                                <option value="Null">Sin especificar</option>
+                                <option value="24">24 Pulgadas</option>
+                                <option value="27">27 Pulgadas</option>
+                                <option value="32">32 Pulgadas</option>
+                                <option value="38">38 Pulgadas</option>
+                            </select>
+
+                            <label style="margin-top: 15px;" for="resolucion">Resolución:</label>
+                            <select id="resolucion" name="resolucion">
+                                <option value="Null">Sin especificar</option>
+                                <option value="1920x1080">1920x1080</option>
+                                <option value="2560x1080">2560x1080</option>
+                            </select>
+
+                            <label style="margin-top: 15px;" for="frecuencia">Frecuencia de actualización                                (Hz):</label>
+                            <select id="frecuencia" name="frecuencia">
+                                <option value="Null">Sin especificar</option>
+                                <option value="60Hz">60Hz</option>
+                                <option value="120Hz">120Hz</option>
+                                <option value="144Hz">144Hz</option>
+                                <option value="160Hz">160Hz</option>
+                                <option value="200Hz">200Hz</option>
+                                <option value="240Hz">240Hz</option>
+                                <option value="260Hz">260Hz</option>
+                            </select>
+
+                            <label style="margin-top: 15px;" for="tipo_panel">Tipo de Panel (IPS, TN, VA):</label>
+                            <select id="tipo_panel" name="tipo_panel">
+                                <option value="Null">Sin especificar</option>
+                                <option value="IPS">IPS</option>
+                                <option value="VA">VA</option>
+                                <option value="TN">TN</option>
+                            </select>
+
+                            <input class="" type="text" name="descripcíon" id="descripcíon" placeholder="Descripcíon">
+                            <input class="" type="file" name="img" id="img" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="forms-bittoms">
+                    <button class="registrar-btn" onclick="registrarComponente()">Registrar</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+
+
+
+    <!-- Pie de pagina -->
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="menu-footer">
+                <div class="contact-info">
+                    <p class="title-footer">Información de Contacto</p>
+                    <ul>
+                        <li>Dirección: Calle 6, 11350. La florida</li>
+                        <li>Telefono: +56 9 9196 9934</li>
+                        <li>Email: cr.pradop@duocuc.cl</li>
+                    </ul>
+                    <div class="social-icons">
+                        <span class="facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </span>
+                        <span class="instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </span>
+                        <span class="google">
+                            <i class="fa-brands fa-google"></i>
+                        </span>
+                        <span class="twitter ">
+                            <i class="fa-brands fa-twitter"></i>></i>
+                        </span>
+                        <span class="linkedin">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="information">
+                    <p class="title-footer">Información</p>
+                    <ul>
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Terminos y condiciones</a></li>
+                        <li><a href="#">Contactanos</a></li>
+                    </ul>
+                </div>
+                <div class="my-account">
+                    <p class="title-footer">Mi cuenta</p>
+                    <ul>
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Historial de compras</a></li>
+                        <li><a href="#">Historial presupuestos</a></li>
+                    </ul>
+                </div>
+                <div class="newslatter">
+                    <p class="title-footer">Mi cuenta</p>
+                    <div class="content">
+                        <p>
+                            Suscribete para recibir las Ofertas
+                        </p>
+                        <input type="email" placeholder="Ingresa tu correo">
+                        <button>Suscribete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>
+                    Desarrollado por: OWOWOWOWOOWOW &copy; 2024
+                </p>
+                <img class="pay-img" src="{% static 'img/pay.png' %}" alt="pago">
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scrips externos -->
+    <script src="https://kit.fontawesome.com/aea391ca7c.js" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

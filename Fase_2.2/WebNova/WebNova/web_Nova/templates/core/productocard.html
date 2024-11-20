@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/productocard.css' %}">
+  <script src="{% static './js/Componentes.js' %}"></script>
+  <script src="{% static './js/cartService.js' %}"></script>
+  <script src="{% static './js/index.js' %}" defer></script>
+  <title>Productos Destacados</title>
+
+  <!-- Slider -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Header -->
+
+  <header>
+    <div class="container-hero">
+        <div class="container hero">
+            <div class="customer-support">
+                <i class="fa-solid fa-headset"></i>
+                <div class="content-customer-support">
+                    <span class="text">Comunicate con Nosotros</span>
+                    <span class="number">+56 9 9196 9934</span>
+                </div>
+            </div>
+
+            <div class="container-logo">
+                <i class="fa-brands fa-dropbox"></i>
+                <h1 class="logo">Web Nova<a href="{% url 'INDEX' %}"></a></h1>
+            </div>
+
+            <div class="container-user">
+                <div class="paste-button">
+                    <button class="button fa-solid fa-user"> </button>
+                    <div class="dropdown-content">
+                        {% if user.is_authenticated %}
+                        <a id="bottom" href="{% url 'user_profile' %}">Ver Perfil : {{user.username}}  </a>
+                        <a id="bottom" href="">Compras </a>
+                        <a id="bottom" href="{% url 'LOGOUT' %}">Cerrar sesion</a>
+                        {% else %}
+                        <a id="bottom" href="{% url 'log' %}">Inicia sesion</a>
+                        <a id="bottom" href="{% url 'registrop' %}">Registrate</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <i class="fa-solid fa-cart-shopping" href="{% url 'card' %}"></i>
+                <div class="content-shopping-cart" href="{% url 'card' %}">
+                    <a class="text" href="{% url 'card' %}" id="carrito" style="color: white; text-decoration: none;">Carrito de Compras</a>
+                    <span class="number" id="cuentaCarrito">(0)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- navbar -->
+
+    <div class="container-navbar">
+        <nav class="navbar container">
+            <i class="fa-solid fa-bars"></i>
+
+            <ul class="menu">
+                <li><a href="{% url 'INDEX' %}">Inicio</a></li>
+                <li><a href="{% url 'productoex' %}">Productos</a></li>
+                <li><a href="#">Nosotros</a></li>
+            </ul>
+            <form class="search-form">
+                <input type="search" placeholder="Buscar...">
+                <button class="btn-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </nav>
+    </div>
+</header>
+
+  <!-- Producto -->
+
+  <div class="wrapper-objetos">
+    <div class="wrap_img">
+      <div class="miniwrap_img">
+        <div class="img_producto">
+          <img class="img-producto" src="{{ producto.imagen.url }}" alt="Imagen de {{ producto.nombre_producto }}">
+        </div>
+      </div>
+    </div>
+    <div class="wrap_description">
+      <div class="wrap_detalle">
+        <div class="detalle">
+          <h2> {{ producto.nombre_producto }} / {{ producto.marca_producto }} </h2>
+          <p class="price">$ {{producto.precio_producto}} </p>
+          <h3> Caracteristicas </h3>
+          <ul class="product-details">
+            <li>Categoría: {{ producto.categoria }}</li>
+            <li>Marca: {{ producto.marca_producto }}</li>
+            <li>Descripción: {{ producto.descripcion }}</li>
+          </ul>
+          <h3> Especificaciones tecnicas </h3>
+        </div>
+      </div>
+    </div>
+    <div class="wrap_buttoms">
+      <div class="wrap_mini">
+        <button class="sign" onclick="agregarAlCarrito({{ producto.id }}, '{{ producto.nombre_producto }}', {{ producto.precio_producto }}, '{{ producto.imagen.url }}')">Agregar al carrito</button>
+        <button class="sign">Comprar</button>
+        <button class="sign">Ver Detalles</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="linea-divisoria2"></div>
+
+  <div class="wrap-producto3">
+    <div class="slider-container">
+      <button class="slider-btn prev-btn">&#10094;</button>
+      <div class="slider">
+        {% for prod in productos_aleatorios %}
+        <div class="card_product">
+          <a href="{% url 'producto_detalle' prod.id %}" class="product-link" style="text-decoration: none;">
+          <div class="img_producto_slider">
+            <img src="{{ prod.imagen.url }}" alt="{{ prod.nombre_producto }}">
+          </div>
+          <div class="content">
+            <h3>{{ prod.nombre_producto }}</h3>
+            <div class="price">${{ prod.precio_producto }}</div>
+            <ul class="product-details">
+              <li>Marca: {{ prod.marca_producto }}</li>
+              <li>Tipo: {{ prod.categoria }}</li>
+            </ul>
+          </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      <button class="slider-btn next-btn">&#10095;</button>
+    </div>
+  </div>
+
+  <div class="linea-divisoria2"></div>
+
+  <div class="wrap-producto3">
+
+  </div>
+
+  <!-- Pie de pagina -->
+  <footer class="footer">
+    <div class="container-footer">
+      <div class="menu-footer">
+        <div class="contact-info">
+          <p class="title-footer">Información de Contacto</p>
+          <ul>
+            <li>Dirección: Calle 6, 11350. La florida</li>
+            <li>Telefono: +56 9 9196 9934</li>
+            <li>Email: cr.pradop@duocuc.cl</li>
+          </ul>
+          <div class="social-icons">
+            <span class="facebook">
+              <i class="fa-brands fa-facebook"></i>
+            </span>
+            <span class="instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </span>
+            <span class="google">
+              <i class="fa-brands fa-google"></i>
+            </span>
+            <span class="twitter ">
+              <i class="fa-brands fa-twitter"></i>></i>
+            </span>
+            <span class="linkedin">
+              <i class="fa-brands fa-linkedin"></i>
+            </span>
+          </div>
+        </div>
+        <div class="information">
+          <p class="title-footer">Información</p>
+          <ul>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Terminos y condiciones</a></li>
+            <li><a href="#">Contactanos</a></li>
+          </ul>
+        </div>
+        <div class="my-account">
+          <p class="title-footer">Mi cuenta</p>
+          <ul>
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#">Historial de compras</a></li>
+            <li><a href="#">Historial presupuestos</a></li>
+          </ul>
+        </div>
+        <div class="newslatter">
+          <p class="title-footer">Mi cuenta</p>
+          <div class="content">
+            <p>
+              Suscribete para recibir las Ofertas
+            </p>
+            <input type="email" placeholder="Ingresa tu correo">
+            <button>Suscribete</button>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>
+          Desarrollado por: OWOWOWOWOOWOW &copy; 2024
+        </p>
+        <img class="pay-img" src="{% static 'img/pay.png' %}" alt="pago">
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scrips externos -->
+  <script src="https://kit.fontawesome.com/aea391ca7c.js" crossorigin="anonymous">
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slider = document.querySelector('.slider');
+      const prevBtn = document.querySelector('.prev-btn');
+      const nextBtn = document.querySelector('.next-btn');
+
+      let currentIndex = 0;
+
+      const updateSliderPosition = () => {
+        const cardWidth = document.querySelector('.card_product').offsetWidth;
+        const gap = parseInt(getComputedStyle(slider).gap) || 0;
+        slider.style.transform = `translateX(-${(cardWidth + gap) * currentIndex}px)`;
+      };
+
+      prevBtn.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateSliderPosition();
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        const maxIndex = slider.children.length - 1;
+        if (currentIndex < maxIndex) {
+          currentIndex++;
+          updateSliderPosition();
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
